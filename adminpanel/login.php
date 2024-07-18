@@ -58,7 +58,7 @@ require "../js/koneksi.php";
                     else {
                         ?>
                         <div class="alert alert-warning" role="alert">
-                            password salah !
+                            password salah KUCOBA !
                     </div>
                         <?php
                     }
