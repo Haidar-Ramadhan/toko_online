@@ -9,7 +9,7 @@ require "../js/koneksi.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.css">
 </head>
 <style>
     .main{
@@ -27,12 +27,12 @@ require "../js/koneksi.php";
         <div class="login-box p-5 shadow">
             <form action="" method="post">
                 <div>
-                    <label for="username">Username</label>
+                       <label for="username">Username</label>
                     <input type="text" class="form-control" name="username"
                     id="username">
                 </div>
                 <div>
-                    <label for="password">Password</label>
+                        <label for="password">Password</label>
                     <input type="password" class="form-control" name="password"
                     id="password">
                 </div>
@@ -40,6 +40,7 @@ require "../js/koneksi.php";
                     <button class="btn btn-success form-control mt-3" type="submit"
                     name="loginbtn">Login</button>
                 </div>
+         
             </form>
         </div>
         <div class="mt-3" style= "width: 500px">
@@ -52,13 +53,15 @@ require "../js/koneksi.php";
                 $countdata = mysqli_num_rows($query);
                 $data = mysqli_fetch_array($query);
                 if($countdata>0){
-                    if (password_verify('rasmuslerdorf', $hash)) {
-
+                    if (password_verify($password, $data['password'])) {
+                        $_SESSION['username'] = $data['username'];
+                        $_SESSION['login'] = true;
+                        header('location: ../adminpanel');
                     }
                     else {
                         ?>
                         <div class="alert alert-warning" role="alert">
-                            password salah KUCOBA !
+                            password salah !
                     </div>
                         <?php
                     }
@@ -72,6 +75,7 @@ require "../js/koneksi.php";
 
                 }
             }
+        
             ?>
         </div>
     </div>
