@@ -1,5 +1,12 @@
 <?php
 require "session.php";
+require "../js/koneksi.php";
+
+$queryKategori = mysqli_query($con, "SELECT * FROM kategori");
+$jummlahKategori = mysqli_num_rows($queryKategori); 
+
+$queryProduk = mysqli_query($con, "SELECT * FROM produk");
+$jumlahProduk = mysqli_num_rows($queryProduk);
 ?>
 
 
@@ -24,6 +31,15 @@ require "session.php";
         background-color: #0a6b4a;
         border-radius: 15px;
     }
+
+    .summary-product {
+        background-color: #0a516b;
+        border-radius: 15px;
+    }
+
+    .no_dec {
+        text-decoration: none;
+    }
 </style>
 
 
@@ -43,22 +59,43 @@ require "session.php";
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col-lg-4 summary-category p-4">
-                <div class="row">
-                    <div class= "col-6">
-                        <i class="fas fa-align-justify fa-5x text-black-50">
-                        </i>
+           
+
+            <div class="col-lg-4 col-md-12 mb-3">
+                <div class="summary-product p-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <i class="fas fa-box fa-7x text-black-50">
+                            </i>
+                        </div>
+                        <div class="col-6 text-white">
+                            <h3 class="fs-2">Kategori</h3>
+                            <p class="fs-4"><?php echo $jummlahKategori ?> kategori</p>
+                            <p><a href="kategori.php" class="text-white no_dec">Lihat Detail</a></p>
+                        </div>
                     </div>
-                    <div class="col-6 text-white">
-                        <h3>Kategori</h3>
-                        <p>4 kategori</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="summary-category p-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <i class="fas fa-align-justify fa-7x text-black-50">
+                            </i>
+                        </div>
+                        <div class="col-6 text-white">
+                            <h3 class="fs-2">Produk</h3>
+                            <p class="fs-4"><?php echo $jumlahProduk ?> Produk</p>
+                            <p><a href="kategori.php" class="text-white no_dec">Lihat Detail</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="../bootstrap-5.3.3-dist/js/boots"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../fontawesome-free-6.6.0-web/js/all.min.js"></script>
 </body>
 

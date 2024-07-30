@@ -6,19 +6,16 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-3">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item me-3">
           <a class="nav-link" href="kategori.php">Kategori</a>
         </li>
         <li class="nav-item me-3">
-          <a class="nav-link disabled" href="produk.php">Produk</a>
+          <a class="nav-link" href="produk.php">Produk</a>
         </li>
         <li class="nav-item me-3">
-          <a class="nav-link disabled"  <?php
-            if(isset($_POST['logout'])){
-                header('location: logout.php');
-            }  ?> >Logout</a>
+          <a class="nav-link" href="logout.php">Logout</a>
         </li>
       </ul>
     </div>
