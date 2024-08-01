@@ -2,7 +2,7 @@
 require "session.php";
 require "../js/koneksi.php";
 
-$id = $_GET['p']; 
+$id = $_GET['p'];
 $query = mysqli_query($con, "SELECT * FROM kategori WHERE id='$id'");
 $data = mysqli_fetch_array($query);
 ?>
@@ -26,37 +26,53 @@ $data = mysqli_fetch_array($query);
             <form action="" method="post">
                 <label for="kategori">Kategori</label>
                 <input type="" name="kategori" id="kategori" class="form-control" value="<?php echo
-                $data['nama'];?>">
+                                                                                            $data['nama']; ?>">
 
-                <div mt-5>
+                <div class="mt-5 d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary" name="editBtn">Ubah</button>
+                    <button type="submit" class="btn btn-danger" name="hapusBtn">Hapus</button>
                 </div>
             </form>
             <?php
-            if(isset($_POST['editBtn'])) {
+            if (isset($_POST['editBtn'])) {
                 $kategori = htmlspecialchars($_POST['kategori']);
                 $querySimpan = mysqli_query($con, "UPDATE kategori SET nama='$kategori' WHERE
                  id='$id'");
-                 $query = mysqli_query($con, "SELECT * FROM kategori WHERE nama='$kategori'");
-                 $jumlahData = mysqli_num_rows($query);
+                $query = mysqli_query($con, "SELECT * FROM kategori WHERE nama='$kategori'");
+                $jumlahData = mysqli_num_rows($query);
 
-                if($querySimpan){
-                    ?>
+                if ($querySimpan) {
+            ?>
                     <div class="alert alert-primary mt-3" role="alert">
                         Kategori Berhasil disimpan
                     </div>
-                      <meta http-equiv="refresh" content="0; url=kategori.php" />
-                    <?php
+                    <meta http-equiv="refresh" content="0; url=kategori.php" />
+                <?php
+                } else if ($jumlahData > 0) {
+
+
+                ?>
+                    <div class="alert alert-waning mt-3" role="alert">
+                        Kategori Sudah Ada
+                    </div>
+                <?php
+
+                } else {
+                    echo mysqli_error($con);
                 }
-                else if ($jumlahData > 0){
-                
-                    
-                        ?>
-                        <div class="alert alert-waning mt-3" role="alert">
-                            Kategori Sudah Ada
-                        </div>
-                        <?php
-                    
+            }
+            if (isset($_POST['hapusBtn'])) {
+                $queryDelete = mysqli_query($con, "DELETE FROM kategori WHERE id='$id'");
+
+                if ($queryDelete) {
+                ?>
+                    <div class="alert alert-primary mt-3" role="alert">
+                        Kategori Berhasil Dihapus
+                    </div>
+                    <meta http-equiv="refresh" content="0; url=kategori.php" />
+            <?php
+                }else {
+                    echo mysqli_error($con);
                 }
             }
             ?>

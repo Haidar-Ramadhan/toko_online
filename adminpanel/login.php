@@ -53,7 +53,7 @@ require "../js/koneksi.php";
                 $countdata = mysqli_num_rows($query);
                 $data = mysqli_fetch_array($query);
                 if ($countdata > 0) {
-                    if (password_verify($password, $data['password'])) {
+                    if (password_verify($password, $data['PASSWORD'])) {
                         $_SESSION['username'] = $data['username'];
                         $_SESSION['login'] = true;
                         header('location: ../adminpanel');
